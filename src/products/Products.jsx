@@ -6,11 +6,12 @@ import Cart from "./component/cart/cart";
 import products from "../database/products.json"
 import { useState, useEffect } from "react";
 import prodo from "../../src/database/products.json"
+import useLocalStorage from "../customhook/useLocalStorage";
 
 
 function Products(props) {
 
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useLocalStorage("carts", []);
     const [data, setdata] = useState([]);
     // const data = products;
 
@@ -78,16 +79,6 @@ function Products(props) {
             setCart(cart.filter((item) => item.id !== product.id));
         }
     }
-
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
-
-    useEffect(() => {
-        const carts = localStorage.getItem('cart');
-        if (carts !== null) setCart(JSON.parse(carts));
-    }, []);
 
     const Total = cart.reduce((price, item) => price + item.quantity * item.price, 0).toFixed(2)
     return (
