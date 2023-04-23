@@ -10,7 +10,6 @@ function ListProduct({ data, headlebuy, cart }) {
             {/* list */}
             <div className="ListProducct">
                 {data && data.map((item) => {
-                    console.log("ca", item)
                     const color = item.color;
                     return (
                         <div className="List-body" key={item.id}>
