@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 function useLocalStorage(key, initialValue) {
-    // Initialize state with the value from localStorage or with the initialValue
     const [storedValue, setStoredValue] = useState(() => {
         try {
             const item = window.localStorage.getItem(key);
@@ -12,7 +11,6 @@ function useLocalStorage(key, initialValue) {
         }
     });
 
-    // Update localStorage when the storedValue changes
     useEffect(() => {
         try {
             window.localStorage.setItem(key, JSON.stringify(storedValue));
